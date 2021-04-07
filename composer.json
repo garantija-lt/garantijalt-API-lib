@@ -1,0 +1,16 @@
+{
+    "name": "garantijalt/api-lib",
+    "description": "wrapper around Garantijalt API",
+    "type": "library",
+    "license": "#",
+    "minimum-stability": "stable",
+    "require": {
+      "ext-curl": "*",
+      "ext-json": "*"
+    },
+    "autoload": {
+      "psr-4": {
+        "Garantijalt\\": "src/"
+      }
+    }
+}
