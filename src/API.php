@@ -131,9 +131,9 @@ class API
         return $response;
     }
 
-    public function getContract($contract)
+    public function getContract($id)
     {
-        $response = $this->callAPI($this->url . 'v1/contracts/'.$contract);
+        $response = $this->callAPI($this->url . 'v1/contracts/'.$id);
 
         return $response;
     }

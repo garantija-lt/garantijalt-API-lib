@@ -59,8 +59,8 @@ try {
       ->setContractTypeId('1')
       ->setDuration( '2')
       ->setBranch('Italy')
-      ->setSellDate('2021-02-12 00:00:00')
-      ->setValidFrom('2021-02-12 00:00:00')
+      ->setSellDate('2021-02-12')
+      ->setValidFrom('2021-02-12')
       ->setPrice(9.9)
       ->setProduct($product->__toArray())
       ->setCustomer($customer->__toArray());

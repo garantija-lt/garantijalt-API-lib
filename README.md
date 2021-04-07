@@ -85,12 +85,34 @@ use Garantijalt\Contract;
       ->setContractTypeId('1')
       ->setDuration( '2')
       ->setBranch('Italy')
-      ->setSellDate('2021-02-12 00:00:00')
-      ->setValidFrom('2021-02-12 00:00:00')
+      ->setSellDate('2021-02-12')
+      ->setValidFrom('2021-02-12')
       ->setPrice(9.9)
       ->setProduct($product->__toArray())
       ->setCustomer($customer->__toArray());
 ```
+
+## Methods
+getContracts($date_from, $date_to)
+- Get all contracts (certificates) created from `$date_from` to `$date_to`
+
+getContract($id)
+- Get a specific contract from its `$id` number
+
+createContract($contract)
+- Create a contract. Contract information is provided above.
+
+updateContract($contract, $id)
+- Update a contract. Replaces current contract information, with `$contract` provided. Replaces contract of `$id` number. 
+
+getWarrantyTypes()
+- Get warranty types array.
+
+getWarrantyDetails($id)
+- Get specific warranty details from its `$id` number.
+
+getInsuranceTypes()
+- Get insurance types array.
 
 ## Calling API
 ---
