@@ -49,7 +49,7 @@ use Garantijalt\Product;
 
 ## Creating Customer
 ---
-`use ParcelStars\Customer;` will allow to create Customer object.
+`use Garantijalt\Customer;` will allow to create Customer object.
 
 Minimum required setup:
 

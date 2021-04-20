@@ -34,6 +34,13 @@ class API
 
         return $this;
     }
+    
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
 
 
     private function callAPI($url, $data = [], $method = 'GET')
