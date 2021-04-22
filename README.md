@@ -88,8 +88,8 @@ use Garantijalt\Contract;
       ->setSellDate('2021-02-12')
       ->setValidFrom('2021-02-12')
       ->setPrice(9.9)
-      ->setProduct($product->__toArray())
-      ->setCustomer($customer->__toArray());
+      ->setProduct($product)
+      ->setCustomer($customer);
 ```
 
 ## Methods
