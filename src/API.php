@@ -4,10 +4,15 @@ namespace Garantijalt;
 
 use Garantijalt\Exception\GarantijaltException;
 use Garantijalt\Exception\ValidationException;
+use Garantijalt\Contract;
+use Garantijalt\Customer;
+use Garantijalt\Product;
+use Garantijalt\Type;
+use Garantijalt\TypeDetail;
 
 class API
 {
-    protected $url = "http://lt.garantija.lt/api/";
+    protected $url = "http://lt.garantija.lt/api/v1/";
     protected $token;
     private $debug_mode;
 
@@ -20,7 +25,7 @@ class API
         $this->token = $token;
 
         if (!$test_mode) {
-            $this->url = "http://lt.garantija.lt/api/";
+            $this->url = "http://lt.garantija.lt/api/v1/";
         }
 
         if ($api_debug_mode) {
@@ -31,6 +36,13 @@ class API
     public function setToken($token)
     {
         $this->token = $token;
+
+        return $this;
+    }
+    
+    public function setUrl($url)
+    {
+        $this->url = $url;
 
         return $this;
     }
@@ -126,54 +138,76 @@ class API
 
     public function getContracts($date_from, $date_to)
     {
-        $response = $this->callAPI($this->url . 'v1/contracts?date_gte='.$date_from.'&date_lte='.$date_to);
-
-        return $response;
+        $contracts = [];
+        $response = $this->callAPI($this->url . 'contracts?date_gte='.$date_from.'&date_lte='.$date_to);
+        foreach ($response as $data){
+            $contracts[] = new Contract((array)$data);
+        }
+        return $contracts;
     }
 
     public function getContract($id)
     {
-        $response = $this->callAPI($this->url . 'v1/contracts/'.$id);
+        $response = $this->callAPI($this->url . 'contracts/'.$id);
 
-        return $response;
+        return new Contract((array)$response);
     }
 
     public function createContract($contract)
     {
         $post_data = $contract->__toArray();
-        $response = $this->callAPI($this->url . 'v1/contracts', $post_data);
+        $response = $this->callAPI($this->url . 'contracts', $post_data);
 
-        return $response;
+        return new Contract((array)$response);
     }
 
     public function updateContract($contract, $id)
     {
       $post_data = $contract->__toArray();
-      $response = $this->callAPI($this->url . 'v1/contracts/'.$id, $post_data, 'PUT');
+      $response = $this->callAPI($this->url . 'contracts/'.$id, $post_data, 'PUT');
 
-      return $response;
+      return new Contract((array)$response);
     }
 
 
     public function getWarrantyTypes()
     {
-        $response = $this->callAPI($this->url . 'v1/warranty_types');
-
-        return $response;
+        $types = [];
+        $response = $this->callAPI($this->url . 'warranty_types');
+        foreach ($response as $data){
+            $types[] = new Type((array)$data);
+        }
+        return $types;
     }
 
     public function getWarrantyDetails($id)
     {
-        $response = $this->callAPI($this->url . 'v1/warranty_types/'.$id);
-
-        return $response;
+        $details = [];
+        $response = $this->callAPI($this->url . 'warranty_types/'.$id);
+        foreach ($response as $data){
+            $details[] = new TypeDetail((array)$data);
+        }
+        return $details;
     }
 
     public function getInsuranceTypes()
     {
-        $response = $this->callAPI($this->url . 'v1/insurrance_types');
-
-        return $response;
+        $types = [];
+        $response = $this->callAPI($this->url . 'insurrance_types');
+        foreach ($response as $data){
+            $types[] = new Type((array)$data);
+        }
+        return $types;
+    }
+    
+    public function getInsuranceDetails($id)
+    {
+        $details = [];
+        $response = $this->callAPI($this->url . 'insurrance_types/'.$id);
+        foreach ($response as $data){
+            $details[] = new TypeDetail((array)$data);
+        }
+        return $details;
     }
 
 }

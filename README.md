@@ -49,7 +49,7 @@ use Garantijalt\Product;
 
 ## Creating Customer
 ---
-`use ParcelStars\Customer;` will allow to create Customer object.
+`use Garantijalt\Customer;` will allow to create Customer object.
 
 Minimum required setup:
 
@@ -88,8 +88,8 @@ use Garantijalt\Contract;
       ->setSellDate('2021-02-12')
       ->setValidFrom('2021-02-12')
       ->setPrice(9.9)
-      ->setProduct($product->__toArray())
-      ->setCustomer($customer->__toArray());
+      ->setProduct($product)
+      ->setCustomer($customer);
 ```
 
 ## Methods

@@ -62,8 +62,8 @@ try {
       ->setSellDate('2021-02-12')
       ->setValidFrom('2021-02-12')
       ->setPrice(9.9)
-      ->setProduct($product->__toArray())
-      ->setCustomer($customer->__toArray());
+      ->setProduct($product)
+      ->setCustomer($customer);
 
 //    $contracts = $glt->getContracts($date_from, $date_to);
 //    $contract = $glt->getContract('3171309');
@@ -76,13 +76,13 @@ try {
 //    $warrantyDetails = $glt->getWarrantyDetails('1');
     $insuranceTypes = $glt->getInsuranceTypes();
 
-//    echo json_encode($contracts);
-//    echo json_encode($contract);
-//    echo json_encode($newContract);
-//    echo json_encode($updatedContract);
-//    echo json_encode($warrantyTypes);
-//    echo json_encode($warrantyDetails);
-    echo json_encode($insuranceTypes);
+//    echo var_dump($contracts);
+//    echo var_dump($contract);
+//    echo var_dump($newContract);
+//    echo var_dump($updatedContract);
+//    echo var_dump($warrantyTypes);
+//    echo var_dump($warrantyDetails);
+    echo var_dump($insuranceTypes);
 
 } catch (GarantijaltException $e) {
     echo $e->getMessage();

@@ -3,11 +3,11 @@
 namespace Garantijalt;
 
 use Garantijalt\Exception\GarantijaltException;
-
+use Garantijalt\BaseModel;
 /**
  *
  */
-class Customer
+class Customer extends BaseModel
 {
     protected $firstname;
     protected $lastname;
@@ -19,10 +19,10 @@ class Customer
     protected $country;
     protected $phone;
     protected $email;
-
-    public function __construct()
-    {
-    }
+    
+    protected $required = ['firstname', 'lastname', 'code', 'address', 'address_2', 'zip', 'city', 'country', 'phone', 'email'];
+    protected $nullable = ['address', 'address_2', 'zip', 'city', 'country'];
+    
 
     public function setFirstName($firstname)
     {
@@ -93,43 +93,5 @@ class Customer
 
         return $this;
     }
-
-  public function generateCustomer()
-  {
-    if (!$this->firstname) throw new GarantijaltException('All the required fields must be filled. firstname is missing.');
-    if (!$this->lastname) throw new GarantijaltException('All the required fields must be filled. lastname is missing.');
-    if (!$this->code) throw new GarantijaltException('All the required fields must be filled. code is missing.');
-//    if (!$this->address || !$this->address_2) throw new GarantijaltException('At least one address must be filled.');
-//    if (!$this->zip) throw new GarantijaltException('All the fields must be filled. zip code is missing.');
-//    if (!$this->city) throw new GarantijaltException('All the fields must be filled. city is missing.');
-//    if (!$this->country) throw new GarantijaltException('All the fields must be filled. country is missing.');
-    if (!$this->phone) throw new GarantijaltException('All the required fields must be filled. phone is missing.');
-    if (!$this->email) throw new GarantijaltException('All the required fields must be filled. email is missing.');
-
-    $customer = array(
-      'firstname' => $this->firstname,
-      'lastname' => $this->lastname,
-      'code' => $this->code,
-      'address' => $this->address,
-      'address_2' => $this->address_2,
-      'zip' => $this->zip,
-      'city' => $this->city,
-      'country' => $this->country,
-      'phone' => $this->phone,
-      'email' => $this->email
-    );
-
-    return $customer;
-  }
-
-  public function returnJson()
-  {
-    return json_encode($this->generateCustomer());
-  }
-
-  public function __toArray()
-  {
-    return $this->generateCustomer();
-  }
 
 }
